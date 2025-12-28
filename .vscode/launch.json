@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MemberApplication",
+            "request": "launch",
+            "mainClass": "com.hedon.train.member.MemberApplication",
+            "projectName": "member"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayApplication<gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hedon.train.gateway.GatewayApplication",
+            "projectName": "gateway",
+            "args": "",
+            "vmArgs": "-Dreactor.netty.http.server.accessLogEnabled=true",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
