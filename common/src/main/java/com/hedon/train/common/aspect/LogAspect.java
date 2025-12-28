@@ -1,4 +1,4 @@
-package com.hedon.train.member.aspect;
+package com.hedon.train.common.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

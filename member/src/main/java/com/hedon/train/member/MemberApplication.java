@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.hedon.train")
 public class MemberApplication {
 
     private static final Logger LOG = LoggerFactory.getLogger(MemberApplication.class);
