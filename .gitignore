@@ -31,3 +31,6 @@ build/
 
 ### logs ###
 logs/
+
+### node
+node_modules/
