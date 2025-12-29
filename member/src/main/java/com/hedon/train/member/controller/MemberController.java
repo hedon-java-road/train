@@ -10,6 +10,7 @@ import com.hedon.train.member.req.MemberRegisterReq;
 import com.hedon.train.member.service.MemberService;
 
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/member")
@@ -24,7 +25,7 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public CommonResp<Long> register(MemberRegisterReq req) {
+    public CommonResp<Long> register(@Valid MemberRegisterReq req) {
         return CommonResp.success(memberService.register(req));
     }
 }

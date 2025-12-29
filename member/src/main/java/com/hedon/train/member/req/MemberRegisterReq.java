@@ -1,6 +1,9 @@
 package com.hedon.train.member.req;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class MemberRegisterReq {
+    @NotBlank(message = "手机号不能为空")
     private String mobile;
 
     public String getMobile() {
@@ -9,5 +12,12 @@ public class MemberRegisterReq {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberRegisterReq{" +
+                "mobile='" + mobile + '\'' +
+                '}';
     }
 }

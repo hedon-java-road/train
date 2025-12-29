@@ -4,4 +4,4 @@
 GET {{baseUrl}}/count
 
 ### 注册会员
-POST {{baseUrl}}/register?mobile=13800138002
+POST {{baseUrl}}/register?mobile=
