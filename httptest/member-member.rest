@@ -1,1 +1,7 @@
-GET http://127.0.0.1:10000/member/member/count
+@baseUrl = http://127.0.0.1:10000/member/member
+
+### 获取会员数量
+GET {{baseUrl}}/count
+
+### 注册会员
+POST {{baseUrl}}/register?mobile=13800138000
