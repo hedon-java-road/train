@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.hedon.train.member.domain.Member;
 import com.hedon.train.member.domain.MemberExample;
 import com.hedon.train.member.mapper.MemberMapper;
+import com.hedon.train.member.req.MemberRegisterReq;
 
 import cn.hutool.core.collection.CollUtil;
 import jakarta.annotation.Resource;
@@ -21,7 +22,8 @@ public class MemberService {
         return Math.toIntExact(memberMapper.countByExample(null));
     }
 
-    public long register(String mobile) {
+    public long register(MemberRegisterReq req) {
+        String mobile = req.getMobile();
         MemberExample memberExample = new MemberExample();
         memberExample.createCriteria().andMobileEqualTo(mobile);
         List<Member> list = memberMapper.selectByExample(memberExample);

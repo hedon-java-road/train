@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hedon.train.common.resp.CommonResp;
+import com.hedon.train.member.req.MemberRegisterReq;
 import com.hedon.train.member.service.MemberService;
 
 import jakarta.annotation.Resource;
@@ -17,12 +19,12 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/count")
-    public int count() {
-        return memberService.count();
+    public CommonResp<Integer> count() {
+        return new CommonResp<>(memberService.count());
     }
 
     @PostMapping("/register")
-    public Long register(String mobile) {
-        return memberService.register(mobile);
+    public CommonResp<Long> register(MemberRegisterReq req) {
+        return new CommonResp<>(memberService.register(req));
     }
 }
