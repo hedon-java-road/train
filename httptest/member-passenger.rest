@@ -1,0 +1,24 @@
+@baseUrl = http://127.0.0.1:10000/member/passenger
+@token = {{login.response.body.content.token}}
+
+### 登录
+# @name login
+POST http://127.0.0.1:10000/member/member/login
+Content-Type: application/json
+
+{
+  "mobile": "13000000008",
+  "code": "8888"
+}
+
+### 保存乘车人
+POST {{baseUrl}}/save
+Content-Type: application/json
+Token: {{token}}
+
+{
+  "name": "张三",
+  "memberId": 1766987843060,
+  "idCard": "130000000000000000",
+  "type": "1"
+}
