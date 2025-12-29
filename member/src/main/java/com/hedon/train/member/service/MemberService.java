@@ -12,11 +12,12 @@ import com.hedon.train.common.util.IdUtil.SnowUtil;
 import com.hedon.train.member.domain.Member;
 import com.hedon.train.member.domain.MemberExample;
 import com.hedon.train.member.mapper.MemberMapper;
+import com.hedon.train.member.req.MemberLoginReq;
 import com.hedon.train.member.req.MemberRegisterReq;
 import com.hedon.train.member.req.MemberSendCodeReq;
+import com.hedon.train.member.resp.MemberLoginResp;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.RandomUtil;
 import jakarta.annotation.Resource;
 
 @Service
@@ -33,20 +34,19 @@ public class MemberService {
 
     public void sendCode(MemberSendCodeReq req) {
         String mobile = req.getMobile();
-        MemberExample memberExample = new MemberExample();
-        memberExample.createCriteria().andMobileEqualTo(mobile);
-        List<Member> list = memberMapper.selectByExample(memberExample);
+        Member member = selectByMobile(mobile);
 
         // 如果手机号不存在，则插入一条记录
-        if (CollUtil.isEmpty(list)) {
-            Member member = new Member();
+        if (member == null) {
+            member = new Member();
             member.setId(SnowUtil.nextId());
             member.setMobile(mobile);
             memberMapper.insert(member);
         }
 
         // 生成验证码
-        String code = RandomUtil.randomNumbers(6);
+        // String code = RandomUtil.randomNumbers(6);
+        String code = "123456";
         LOG.info("生成短信验证码，手机: {}，验证码: {}", mobile, code);
 
         // 保证短信记录表：手机号、短信验证码、有效期、是否已使用、业务类型、发送时间、使用时间
@@ -58,12 +58,8 @@ public class MemberService {
 
     public long register(MemberRegisterReq req) {
         String mobile = req.getMobile();
-        MemberExample memberExample = new MemberExample();
-        memberExample.createCriteria().andMobileEqualTo(mobile);
-        List<Member> list = memberMapper.selectByExample(memberExample);
-
-        if (CollUtil.isNotEmpty(list)) {
-            throw new BusinessException(BusinessExceptionEnum.MEMEBE_MOBILE_EXIST);
+        if (selectByMobile(mobile) != null) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
@@ -72,5 +68,41 @@ public class MemberService {
 
         memberMapper.insert(member);
         return member.getId();
+    }
+
+    public MemberLoginResp login(MemberLoginReq req) {
+        String mobile = req.getMobile();
+        String code = req.getCode();
+
+        // 查询手机号是否存在
+        Member member = selectByMobile(mobile);
+
+        // 如果手机号不存在，则抛出异常
+        if (member == null) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_SHOULD_GET_CODE);
+        }
+
+        // 校验短信验证码
+        if (!code.equals("123456")) {
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_CODE_ERROR);
+        }
+
+        return MemberLoginResp.fromMember(member);
+    }
+
+    /**
+     * 查询手机号是否存在
+     * 
+     * @param mobile 手机号
+     * @return 会员列表
+     */
+    private Member selectByMobile(String mobile) {
+        MemberExample memberExample = new MemberExample();
+        memberExample.createCriteria().andMobileEqualTo(mobile);
+        List<Member> list = memberMapper.selectByExample(memberExample);
+        if (CollUtil.isNotEmpty(list)) {
+            return list.get(0);
+        }
+        return null;
     }
 }

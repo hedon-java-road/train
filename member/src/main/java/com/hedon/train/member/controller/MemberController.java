@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hedon.train.common.resp.CommonResp;
+import com.hedon.train.member.req.MemberLoginReq;
 import com.hedon.train.member.req.MemberRegisterReq;
 import com.hedon.train.member.req.MemberSendCodeReq;
+import com.hedon.train.member.resp.MemberLoginResp;
 import com.hedon.train.member.service.MemberService;
 
 import jakarta.annotation.Resource;
@@ -34,5 +36,10 @@ public class MemberController {
     @PostMapping("/register")
     public CommonResp<Long> register(@Valid MemberRegisterReq req) {
         return CommonResp.success(memberService.register(req));
+    }
+
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResp> login(@Valid MemberLoginReq req) {
+        return CommonResp.success(memberService.login(req));
     }
 }
