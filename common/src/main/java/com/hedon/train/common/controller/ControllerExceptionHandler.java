@@ -23,8 +23,8 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(value = BusinessException.class)
     @ResponseBody
     public CommonResp<Void> exceptionHandler(BusinessException e) throws Exception {
-        LOG.error("业务异常：", e);
+        LOG.error("业务异常：{}", e.getE().getDesc());
         return CommonResp.error(e.getE().getDesc());
     }
-
+    
 }
