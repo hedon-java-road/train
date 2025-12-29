@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.hedon.train.common.exception.BusinessException;
 import com.hedon.train.common.exception.BusinessExceptionEnum;
+import com.hedon.train.common.util.IdUtil.SnowUtil;
 import com.hedon.train.member.domain.Member;
 import com.hedon.train.member.domain.MemberExample;
 import com.hedon.train.member.mapper.MemberMapper;
@@ -35,7 +36,7 @@ public class MemberService {
         }
 
         Member member = new Member();
-        member.setId(13800138002L);
+        member.setId(SnowUtil.nextId());
         member.setMobile(mobile);
 
         memberMapper.insert(member);
