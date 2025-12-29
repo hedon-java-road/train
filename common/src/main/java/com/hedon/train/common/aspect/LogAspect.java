@@ -9,7 +9,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
 
-import cn.hutool.core.util.RandomUtil;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,9 +37,6 @@ public class LogAspect {
     @SuppressWarnings("null")
     @Before("controllerPointcut()")
     public void doBefore(JoinPoint joinPoint) {
-        // 日志流水号
-        MDC.put("LOG_ID", System.currentTimeMillis() + "-" + RandomUtil.randomString(5));
-
         // 开启打印请求日志
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -91,8 +86,6 @@ public class LogAspect {
             return result;
         } finally {
             LOG.info("------------- 结束 耗时：{} ms -------------", System.currentTimeMillis() - startTime);
-            // Tomcat 线程会复用；不清理会导致下一次请求串号
-            MDC.remove("LOG_ID");
         }
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hedon.train.common.exception.BusinessException;
 import com.hedon.train.common.exception.BusinessExceptionEnum;
+import com.hedon.train.common.resp.MemberLoginResp;
 import com.hedon.train.common.util.JwtUtil;
 import com.hedon.train.common.util.SnowUtil;
 import com.hedon.train.member.domain.Member;
@@ -16,8 +17,8 @@ import com.hedon.train.member.mapper.MemberMapper;
 import com.hedon.train.member.req.MemberLoginReq;
 import com.hedon.train.member.req.MemberRegisterReq;
 import com.hedon.train.member.req.MemberSendCodeReq;
-import com.hedon.train.member.resp.MemberLoginResp;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import jakarta.annotation.Resource;
 
@@ -91,7 +92,9 @@ public class MemberService {
         // 生成 Token
         String token = JwtUtil.createToken(member);
 
-        return MemberLoginResp.fromMember(member, token);
+        MemberLoginResp resp = BeanUtil.copyProperties(member, MemberLoginResp.class);
+        resp.setToken(token);
+        return resp;
     }
 
     /**

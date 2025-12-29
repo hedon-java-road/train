@@ -1,14 +1,10 @@
 package com.hedon.train.member.req;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class PassengerSaveReq {
     private Long id;
-
-    @NotNull(message = "【会员ID】不能为空")
-    private Long memberId;
 
     @NotBlank(message = "【姓名】不能为空")
     private String name;
@@ -26,14 +22,6 @@ public class PassengerSaveReq {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
     }
 
     public String getName() {
@@ -67,7 +55,6 @@ public class PassengerSaveReq {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", memberId=").append(memberId);
         sb.append(", name=").append(name);
         sb.append(", idCard=").append(idCard);
         sb.append(", type=").append(type);

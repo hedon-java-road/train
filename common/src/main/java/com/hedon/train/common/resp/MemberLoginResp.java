@@ -1,19 +1,9 @@
-package com.hedon.train.member.resp;
-
-import com.hedon.train.member.domain.Member;
-
-import cn.hutool.core.bean.BeanUtil;
+package com.hedon.train.common.resp;
 
 public class MemberLoginResp {
     private Long id;
     private String mobile;
     private String token;
-
-    public static MemberLoginResp fromMember(Member member, String token) {
-        MemberLoginResp memberLoginResp = BeanUtil.copyProperties(member, MemberLoginResp.class);
-        memberLoginResp.setToken(token);
-        return memberLoginResp;
-    }
 
     public String getToken() {
         return token;
