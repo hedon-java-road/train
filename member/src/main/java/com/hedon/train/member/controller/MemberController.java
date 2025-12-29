@@ -20,11 +20,11 @@ public class MemberController {
 
     @GetMapping("/count")
     public CommonResp<Integer> count() {
-        return new CommonResp<>(memberService.count());
+        return CommonResp.success(memberService.count());
     }
 
     @PostMapping("/register")
     public CommonResp<Long> register(MemberRegisterReq req) {
-        return new CommonResp<>(memberService.register(req));
+        return CommonResp.success(memberService.register(req));
     }
 }

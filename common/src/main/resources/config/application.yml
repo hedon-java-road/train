@@ -1,2 +1,5 @@
 # 配置优先 resources/config
 
+spring:
+  jackson:
+    default-property-inclusion: non-null

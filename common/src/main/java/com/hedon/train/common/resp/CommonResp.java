@@ -17,6 +17,20 @@ public class CommonResp<T> {
         this.content = content;
     }
 
+    public CommonResp(boolean success, String message, T content) {
+        this.success = success;
+        this.message = message;
+        this.content = content;
+    }
+
+    public static <T> CommonResp<T> success(T content) {
+        return new CommonResp<>(content);
+    }
+
+    public static CommonResp<Void> error(String msg) {
+        return new CommonResp<Void>(false, msg, null);
+    }
+
     public boolean isSuccess() {
         return success;
     }
