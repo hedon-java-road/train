@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hedon.train.common.exception.BusinessException;
 import com.hedon.train.common.exception.BusinessExceptionEnum;
+import com.hedon.train.common.util.JwtUtil;
 import com.hedon.train.common.util.IdUtil.SnowUtil;
 import com.hedon.train.member.domain.Member;
 import com.hedon.train.member.domain.MemberExample;
@@ -87,7 +88,10 @@ public class MemberService {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_CODE_ERROR);
         }
 
-        return MemberLoginResp.fromMember(member);
+        // 生成 Token
+        String token = JwtUtil.createToken(member);
+
+        return MemberLoginResp.fromMember(member, token);
     }
 
     /**
