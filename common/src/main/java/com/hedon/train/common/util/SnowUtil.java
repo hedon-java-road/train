@@ -1,4 +1,4 @@
-package com.hedon.train.common.util.IdUtil;
+package com.hedon.train.common.util;
 
 import cn.hutool.core.util.IdUtil;
 

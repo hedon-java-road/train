@@ -25,6 +25,14 @@
             <artifactId>spring-cloud-starter-gateway-server-webflux</artifactId>
         </dependency>
 
+        <!-- Spring Boot DevTools 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
         <!-- M1/M2/M3 芯片不兼容问题 -->
         <dependency>
             <groupId>io.netty</groupId>
@@ -33,6 +41,14 @@
             <classifier>osx-aarch_64</classifier>
             <version>4.1.100.Final</version>
         </dependency>
+
+        <!-- Hutool -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+
     </dependencies>
 
 </project>

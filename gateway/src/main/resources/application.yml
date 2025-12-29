@@ -13,11 +13,11 @@ spring:
               uri: http://127.0.0.1:9000
               predicates:
                 - Path=/member/**
-      globalcors:
-        corsConfigurations:
-          "[/**]":
-            allowedOriginPatterns: "*"
-            allowedMethods: "*"
-            allowedHeaders: "*"
-            allowCredentials: true
-            maxAge: 3600
+          globalcors:
+            corsConfigurations:
+              "[/**]":
+                allowedOriginPatterns: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+                allowCredentials: true
+                maxAge: 3600
