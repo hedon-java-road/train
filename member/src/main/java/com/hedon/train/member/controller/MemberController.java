@@ -2,6 +2,7 @@ package com.hedon.train.member.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class MemberController {
     }
 
     @PostMapping("/send-code")
-    public CommonResp<Void> sendCode(@Valid MemberSendCodeReq req) {
+    public CommonResp<Void> sendCode(@Valid @RequestBody MemberSendCodeReq req) {
         memberService.sendCode(req);
         return CommonResp.success();
     }
@@ -39,7 +40,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public CommonResp<MemberLoginResp> login(@Valid MemberLoginReq req) {
+    public CommonResp<MemberLoginResp> login(@Valid @RequestBody MemberLoginReq req) {
         return CommonResp.success(memberService.login(req));
     }
 }

@@ -5,10 +5,21 @@ GET {{baseUrl}}/count
 
 
 ### 发送验证码
-POST {{baseUrl}}/send-code?mobile=13000000008
+POST {{baseUrl}}/send-code
+Content-Type: application/json
+
+{
+  "mobile": "13000000008"
+}
 
 ### 注册会员
 POST {{baseUrl}}/register?mobile=111
 
 ### 登录
-POST {{baseUrl}}/login?mobile=13000000008&code=123456
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "mobile": "13000000008",
+  "code": "123456"
+}

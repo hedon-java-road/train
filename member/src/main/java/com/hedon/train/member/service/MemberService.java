@@ -46,7 +46,7 @@ public class MemberService {
 
         // 生成验证码
         // String code = RandomUtil.randomNumbers(6);
-        String code = "123456";
+        String code = "8888";
         LOG.info("生成短信验证码，手机: {}，验证码: {}", mobile, code);
 
         // 保证短信记录表：手机号、短信验证码、有效期、是否已使用、业务类型、发送时间、使用时间
@@ -83,7 +83,7 @@ public class MemberService {
         }
 
         // 校验短信验证码
-        if (!code.equals("123456")) {
+        if (!code.equals("8888")) {
             throw new BusinessException(BusinessExceptionEnum.MEMBER_CODE_ERROR);
         }
 
