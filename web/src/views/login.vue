@@ -26,11 +26,11 @@
 </template>
 
 <script>
-  import store from "@/store";
-  import { notification } from 'ant-design-vue';
-  import axios from 'axios';
   import { defineComponent, reactive } from 'vue';
-  import { useRouter } from 'vue-router';
+  import axios from 'axios';
+  import { notification } from 'ant-design-vue';
+  import { useRouter } from 'vue-router'
+  import store from "@/store";
 
   export default defineComponent({
     name: "login-view",

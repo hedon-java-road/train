@@ -4,6 +4,7 @@ import 'ant-design-vue/dist/antd.css';
 import axios from 'axios';
 import { createApp } from 'vue';
 import App from './App.vue';
+import './assets/js/enums';
 import router from './router';
 import store from './store';
 
