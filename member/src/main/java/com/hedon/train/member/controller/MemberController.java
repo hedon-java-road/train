@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hedon.train.common.resp.CommonResp;
 import com.hedon.train.member.req.MemberRegisterReq;
+import com.hedon.train.member.req.MemberSendCodeReq;
 import com.hedon.train.member.service.MemberService;
 
 import jakarta.annotation.Resource;
@@ -22,6 +23,12 @@ public class MemberController {
     @GetMapping("/count")
     public CommonResp<Integer> count() {
         return CommonResp.success(memberService.count());
+    }
+
+    @PostMapping("/send-code")
+    public CommonResp<Void> sendCode(@Valid MemberSendCodeReq req) {
+        memberService.sendCode(req);
+        return CommonResp.success();
     }
 
     @PostMapping("/register")

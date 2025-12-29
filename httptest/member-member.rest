@@ -3,5 +3,9 @@
 ### 获取会员数量
 GET {{baseUrl}}/count
 
+
+### 发送验证码
+POST {{baseUrl}}/send-code?mobile=15623205156
+
 ### 注册会员
 POST {{baseUrl}}/register?mobile=111

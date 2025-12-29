@@ -23,6 +23,10 @@ public class CommonResp<T> {
         this.content = content;
     }
 
+    public static <T> CommonResp<T> success() {
+        return new CommonResp<>(null);
+    }
+
     public static <T> CommonResp<T> success(T content) {
         return new CommonResp<>(content);
     }
