@@ -1,7 +1,7 @@
 <template>
   <a-row class="login">
     <a-col :span="8" :offset="8" class="login-main">
-      <h1 style="text-align: center"><rocket-two-tone />&nbsp;甲蛙12306售票系统</h1>
+      <h1 style="text-align: center"><rocket-two-tone />&nbsp;简易12306售票系统</h1>
       <a-form :model="loginForm" name="basic" autocomplete="off">
         <a-form-item label="" name="mobile" :rules="[{ required: true, message: '请输入手机号!' }]">
           <a-input v-model:value="loginForm.mobile" placeholder="手机号" />
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-  import { defineComponent, reactive } from 'vue';
-  import axios from 'axios';
-  import { notification } from 'ant-design-vue';
-  import { useRouter } from 'vue-router'
   import store from "@/store";
+  import { notification } from 'ant-design-vue';
+  import axios from 'axios';
+  import { defineComponent, reactive } from 'vue';
+  import { useRouter } from 'vue-router';
 
   export default defineComponent({
     name: "login-view",
