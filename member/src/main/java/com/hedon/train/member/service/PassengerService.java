@@ -75,4 +75,13 @@ public class PassengerService {
         resp.setTotal(pageInfo.getTotal());
         return resp;
     }
+
+    /**
+     * 删除乘车人
+     * 
+     * @param id
+     */
+    public void delete(Long id) {
+        passengerMapper.deleteByPrimaryKey(id);
+    }
 }
