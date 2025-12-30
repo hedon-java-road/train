@@ -36,11 +36,16 @@ public class PassengerService {
     public void save(Long memberId, PassengerSaveReq req) {
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(req, Passenger.class);
-        passenger.setId(SnowUtil.nextId());
         passenger.setMemberId(memberId);
-        passenger.setCreateTime(now);
         passenger.setUpdateTime(now);
-        passengerMapper.insert(passenger);
+
+        if (ObjectUtil.isNull(passenger.getId())) {
+            passenger.setId(SnowUtil.nextId());
+            passenger.setCreateTime(now);
+            passengerMapper.insert(passenger);
+        } else {
+            passengerMapper.updateByPrimaryKey(passenger);
+        }
     }
 
     /**

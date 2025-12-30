@@ -1,5 +1,9 @@
 package com.hedon.train.member.req;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
@@ -15,6 +19,9 @@ public class PassengerSaveReq {
     @NotBlank(message = "【旅客类型】不能为空")
     @Pattern(regexp = "^[1-3]$", message = "【旅客类型】只能为1、2、3")
     private String type;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
 
     public Long getId() {
         return id;
@@ -48,6 +55,14 @@ public class PassengerSaveReq {
         this.type = type;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -58,6 +73,7 @@ public class PassengerSaveReq {
         sb.append(", name=").append(name);
         sb.append(", idCard=").append(idCard);
         sb.append(", type=").append(type);
+        sb.append(", createTime=").append(createTime);
         sb.append("]");
         return sb.toString();
     }
