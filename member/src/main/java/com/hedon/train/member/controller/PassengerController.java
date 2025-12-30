@@ -1,7 +1,5 @@
 package com.hedon.train.member.controller;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hedon.train.common.context.LoginMemberContext;
 import com.hedon.train.common.resp.CommonResp;
+import com.hedon.train.common.resp.PageResp;
 import com.hedon.train.member.req.PassengerQueryReq;
 import com.hedon.train.member.req.PassengerSaveReq;
 import com.hedon.train.member.resp.PassengerQueryResp;
@@ -32,7 +31,7 @@ public class PassengerController {
     }
 
     @GetMapping("/query-list")
-    public CommonResp<List<PassengerQueryResp>> queryList(@Valid PassengerQueryReq req) {
+    public CommonResp<PageResp<PassengerQueryResp>> queryList(@Valid PassengerQueryReq req) {
         req.setMemberId(LoginMemberContext.getId());
         return CommonResp.success(passengerService.queryList(req));
     }

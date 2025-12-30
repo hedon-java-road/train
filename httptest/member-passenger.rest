@@ -23,6 +23,6 @@ Token: {{token}}
 }
 
 ### 获取乘车人列表
-GET {{baseUrl}}/query-list
+GET {{baseUrl}}/query-list?page=1&size=2
 Content-Type: application/json
 Token: {{token}}
