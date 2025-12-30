@@ -21,3 +21,8 @@ Token: {{token}}
   "idCard": "130000000000000000",
   "type": "1"
 }
+
+### 获取乘车人列表
+GET {{baseUrl}}/query-list
+Content-Type: application/json
+Token: {{token}}
