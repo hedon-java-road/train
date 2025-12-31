@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ServerGenerator",
+            "request": "launch",
+            "mainClass": "com.hedon.train.generator.gen.ServerGenerator",
+            "projectName": "generator"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "com.hedon.Main",
+            "projectName": "generator"
+        },
+        {
+            "type": "java",
             "name": "MemberApplication",
             "request": "launch",
             "mainClass": "com.hedon.train.member.MemberApplication",
@@ -27,6 +41,6 @@
             "projectName": "business",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
-        },
+        }
     ]
 }

@@ -27,23 +27,24 @@ public class ServerGenerator {
     static String module = "";
 
     public static void main(String[] args) throws Exception {
-        // 获取 mybatis-generator
+        // 获取mybatis-generator
         String generatorPath = getGeneratorPath();
+        // 比如generator-config-member.xml，得到module = member
         module = generatorPath.replace("src/main/resources/generator-config-", "").replace(".xml", "");
         System.out.println("module: " + module);
         serverPath = serverPath.replace("[module]", module);
         new File(serverPath).mkdirs();
         System.out.println("servicePath: " + serverPath);
 
-        // 读取 table 节点
+        // 读取table节点
         Document document = new SAXReader().read("generator/" + generatorPath);
         Node table = document.selectSingleNode("//table");
-        System.out.println("table: " + table);
+        System.out.println(table);
         Node tableName = table.selectSingleNode("@tableName");
         Node domainObjectName = table.selectSingleNode("@domainObjectName");
         System.out.println(tableName.getText() + "/" + domainObjectName.getText());
 
-        // 为 DBUtil 设置数据源
+        // 为DbUtil设置数据源
         Node connectionURL = document.selectSingleNode("//@connectionURL");
         Node userId = document.selectSingleNode("//@userId");
         Node password = document.selectSingleNode("//@password");
@@ -108,7 +109,7 @@ public class ServerGenerator {
 
     private static String getGeneratorPath() throws DocumentException {
         SAXReader saxReader = new SAXReader();
-        HashMap<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("pom", "http://maven.apache.org/POM/4.0.0");
         saxReader.getDocumentFactory().setXPathNamespaceURIs(map);
         Document document = saxReader.read(pomPath);
@@ -117,6 +118,9 @@ public class ServerGenerator {
         return node.getText();
     }
 
+    /**
+     * 获取所有的Java类型，使用Set去重
+     */
     private static Set<String> getJavaTypes(List<Field> fieldList) {
         Set<String> set = new HashSet<>();
         for (int i = 0; i < fieldList.size(); i++) {

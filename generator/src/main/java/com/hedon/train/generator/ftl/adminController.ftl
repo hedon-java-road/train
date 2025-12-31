@@ -1,6 +1,5 @@
 package com.hedon.train.${module}.controller.admin;
 
-import com.hedon.train.common.context.LoginMemberContext;
 import com.hedon.train.common.resp.CommonResp;
 import com.hedon.train.common.resp.PageResp;
 import com.hedon.train.${module}.req.${Domain}QueryReq;
