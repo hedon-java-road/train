@@ -17,6 +17,16 @@
             "args": "",
             "vmArgs": "-Dreactor.netty.http.server.accessLogEnabled=true",
             "envFile": "${workspaceFolder}/.env"
-        }
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Main<business>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hedon.train.business.BusinessApplication",
+            "projectName": "business",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
     ]
 }

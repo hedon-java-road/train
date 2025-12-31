@@ -1,0 +1,21 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /business
+
+spring:
+  application:
+    name: business
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3307/train_business?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations:
+    - classpath:/mapper/**/*.xml
+
+logging:
+  level:
+    "[com.hedon.train.business.mapper]": trace

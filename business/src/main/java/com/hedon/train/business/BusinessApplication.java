@@ -1,4 +1,4 @@
-package com.hedon.train.member;
+package com.hedon.train.business;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -8,15 +8,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.ConfigurableEnvironment;
 
-@SpringBootApplication()
+@SpringBootApplication
 @ComponentScan("com.hedon.train")
 @MapperScan("com.hedon.train.*.mapper")
-public class MemberApplication {
-
-    private static final Logger LOG = LoggerFactory.getLogger(MemberApplication.class);
+public class BusinessApplication {
+    private static final Logger LOG = LoggerFactory.getLogger(BusinessApplication.class);
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(MemberApplication.class);
+        SpringApplication app = new SpringApplication(BusinessApplication.class);
         ConfigurableEnvironment env = app.run(args).getEnvironment();
         LOG.info("启动<{}>成功！", env.getProperty("spring.application.name"));
         LOG.info("地址：http://127.0.0.1:{}{}", env.getProperty("server.port"),
